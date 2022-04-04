@@ -39,7 +39,7 @@ public class Arbol {
             }
             //si la llave del nodo actual es menor al indice del nodo padre entonces enlazo la direccion
             //dentro del arbol
-            if (n.id.compareTo(aux.id) < 0) {
+            if (n.id.compareTo(n.padre.id) < 0) {
                 n.padre.izquierda = n;
             }else{
                 n.padre.derecha=n;
@@ -47,12 +47,131 @@ public class Arbol {
         }
     }
 
+    //Metodo para eliminar un nodo del Arbol
+    public String eliminar(String id) {
+        String Mensaje = "";
+        Nodo aux = raiz;
+        Nodo padre = null;
+        //BUSCAMOS EL NODO A ELIMINAR
+        while (aux != null && !aux.id.equals(id)) {
+            padre = aux;
+            if (id.compareTo(aux.id) < 0) {
+                aux = aux.izquierda;
+            } else {
+                aux = aux.derecha;
+            }
+        }
+        //SI EL NODO A ELIMINAR NO EXISTE
+        if (aux == null) {
+            Mensaje = ("El nodo no existe");
+        } else {
+            //SI EL NODO A ELIMINAR ES LA RAIZ
+            if (aux == raiz) {
+                if (aux.izquierda == null && aux.derecha == null) {
+                    raiz = null;
+                } else if (aux.izquierda == null) {
+                    raiz = aux.derecha;
+                } else if (aux.derecha == null) {
+                    raiz = aux.izquierda;
+                } else {
+                    Nodo aux2 = aux.izquierda;
+                    Nodo padre2 = aux;
+                    while (aux2.derecha != null) {
+                        padre2 = aux2;
+                        aux2 = aux2.derecha;
+                    }
+                    aux.id = aux2.id;
+                    aux2.id = id;
+                    if (padre2.derecha == aux2) {
+                        padre2.derecha = aux2.izquierda;
+                    } else {
+                        padre2.izquierda = aux2.izquierda;
+                    }
+                }
+            } else {
+                //SI EL NODO A ELIMINAR NO ES LA RAIZ
+                if (aux.izquierda == null && aux.derecha == null) {
+                    if (aux.id.compareTo(padre.id) < 0) {
+                        padre.izquierda = null;
+                    } else {
+                        padre.derecha = null;
+                    }
+                } else if (aux.izquierda == null) {
+                    if (aux.id.compareTo(padre.id) < 0) {
+                        padre.izquierda = aux.derecha;
+                    } else {
+                        padre.derecha = aux.derecha;
+                    }
+                } else if (aux.derecha == null) {
+                    if (aux.id.compareTo(padre.id) < 0) {
+                        padre.izquierda = aux.izquierda;
+                    } else {
+                        padre.derecha = aux.izquierda;
+                    }
+                } else {
+                    Nodo aux2 = aux.izquierda;
+                    Nodo padre2 = aux;
+                    while (aux2.derecha != null) {
+                        padre2 = aux2;
+                        aux2 = aux2.derecha;
+                    }
+                    aux.id = aux2.id;
+                    aux2.id = id;
+                    if (padre2.derecha == aux2) {
+                        padre2.derecha = aux2.izquierda;
+                    } else {
+                        padre2.izquierda = aux2.izquierda;
+                    }
+                }
+            }
+            Mensaje = "El nodo " + id + " ha sido eliminado";
+        }
+        return Mensaje;
+    }
+    
+
     public void inOrder(Nodo N){
         if(N != null){
             inOrder(N.izquierda);
             System.out.println("(" + N.id + "," + N.contenido + ")");
             inOrder(N.derecha);
         }
+    }
+
+    public String buscar(String id) {
+        String Mensaje = "";
+        Nodo aux = raiz;
+        while (aux != null && !aux.id.equals(id)) {
+            if (id.compareTo(aux.id) < 0) {
+                aux = aux.izquierda;
+            } else {
+                aux = aux.derecha;
+            }
+        }
+        if (aux == null) {
+            Mensaje = null;
+        } else {
+            Mensaje = id;
+        }
+        return Mensaje;
+    }
+
+    public String Traducir(String id){
+        String Mensaje = "";
+        Nodo aux = raiz;
+        while (aux != null && !aux.id.equals(id)) {
+            if (id.compareTo(aux.id) < 0) {
+                aux = aux.izquierda;
+            } else {
+                aux = aux.derecha;
+            }
+        }
+        if (aux == null) {
+            Mensaje = "*" + id + "*";
+        } else {
+            Mensaje = aux.contenido;
+        }
+        return Mensaje;
     }
 
     private class Nodo{

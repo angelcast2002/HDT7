@@ -35,6 +35,7 @@ public class Acciones {
         for (int i = 0; i < Datos.size(); i++) {
             String[] palabras = Datos.get(i).split(",");
             for (int j = 0; j < palabras.length; j++) {
+                palabras[j] = palabras[j].toLowerCase();
                 datos.add(palabras[j]);
             }
         }
@@ -66,12 +67,91 @@ public class Acciones {
             arbolFrances.insertar(Frances.get(i), Español.get(i));
             
         }
-        
-        arbolIngles.inOrder(arbolIngles.raiz);
 
+        System.out.println("----Diccionario Ingles: ");
+        arbolIngles.inOrder(arbolIngles.raiz);
+        System.out.println("----Diccionario Frances: ");
         arbolFrances.inOrder(arbolFrances.raiz);
 
 
+    }
+    
+    public String eliminar(String id){
+        String resultado = " ";
+        resultado = "En el diccionario de ingles: "  + arbolIngles.eliminar(id);
+        resultado = resultado + "\n" +"En el diccionario de frances: " +arbolFrances.eliminar(id);
+
+        System.out.println("----Diccionario Ingles: ");
+        arbolIngles.inOrder(arbolIngles.raiz);
+        System.out.println("----Diccionario Frances: ");
+        arbolFrances.inOrder(arbolFrances.raiz);
+
+        return resultado;
+
+    }
+    
+
+    public String Insertar(String id, String espanol, String frances) {
+        String resultado = "";
+        arbolIngles.insertar(id, espanol);
+        arbolFrances.insertar(frances, espanol);
+        resultado = "En los diccionarios se ha agregado la palabra: " + id + " con la traduccion: (espanol) " + espanol + " frances " + frances;
+        return resultado;
+    }
+
+    public String Traducir(String nombreArchivo) {
+        ArrayList <String> porTraducir = new ArrayList<>();
+        String resultado = "";
+        ArrayList <String> Datos = new ArrayList<>();
+        int Lenguaje = 0;
+        try {
+            Datos = leer.LeerDatos2(nombreArchivo);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < Datos.size(); i++) {
+            String[] palabras = Datos.get(i).split(" ");
+            for (int j = 0; j < palabras.length; j++) {
+                palabras[j] = palabras[j].toLowerCase();
+                porTraducir.add(palabras[j]);
+            }
+        }
+
+
+        for (int i = 0; i < porTraducir.size(); i++) {
+            if (arbolIngles.buscar(porTraducir.get(i)) != null) {
+                Lenguaje = 1;
+            }
+            if (arbolFrances.buscar(porTraducir.get(i)) != null) {
+                Lenguaje = 2;
+            }
+            else{
+                Lenguaje = 3;
+            }
+        }
+
+        if (Lenguaje == 1) {
+            for (int i = 0; i < porTraducir.size(); i++) {
+                resultado = resultado + " " + arbolIngles.Traducir(porTraducir.get(i)) + " ";
+            }
+            
+        }
+        else if(Lenguaje == 2){
+            for (int i = 0; i < porTraducir.size(); i++) {
+                resultado = resultado + " " + arbolFrances.Traducir(porTraducir.get(i)) + " ";
+            }
+            
+        }
+        else{
+            resultado = "No se encuentra la palabra en ninguno de los diccionarios";
+        }
+        
+        return resultado;
     }
     
 }

@@ -36,5 +36,21 @@ public class LeerDatos {
         b.close();
         return Datos;
     } 
+
+    public static ArrayList LeerDatos2(String NombreArchivo)throws IOException, FileNotFoundException{
+        ArrayList <String> Datos = new ArrayList<>();
+        NombreArchivo = NombreArchivo + ".txt";
+        String cadena;
+        FileReader file = new FileReader(NombreArchivo);
+        BufferedReader b = new BufferedReader(file);
+
+        while ((cadena = b.readLine()) != null) {
+             Datos.add(cadena);
+
+        }
+
+        b.close();
+        return Datos;
+    }  
     
 }
