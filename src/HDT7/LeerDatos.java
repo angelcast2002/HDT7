@@ -39,9 +39,9 @@ public class LeerDatos {
 
     public static ArrayList LeerDatos2(String NombreArchivo)throws IOException, FileNotFoundException{
         ArrayList <String> Datos = new ArrayList<>();
-        NombreArchivo = NombreArchivo + ".txt";
+        // NombreArchivo = NombreArchivo + ".txt";
         String cadena;
-        FileReader file = new FileReader(NombreArchivo);
+        FileReader file = new FileReader("intento.txt");
         BufferedReader b = new BufferedReader(file);
 
         while ((cadena = b.readLine()) != null) {

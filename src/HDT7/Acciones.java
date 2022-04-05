@@ -108,48 +108,60 @@ public class Acciones {
             Datos = leer.LeerDatos2(nombreArchivo);
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("No se encontro el archivo");
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("No se encontro el archivo");
         }
 
-        for (int i = 0; i < Datos.size(); i++) {
-            String[] palabras = Datos.get(i).split(" ");
-            for (int j = 0; j < palabras.length; j++) {
-                palabras[j] = palabras[j].toLowerCase();
-                porTraducir.add(palabras[j]);
-            }
-        }
+        try {
+            Datos.add("The woman asked me to do my homework about my town");
 
-
-        for (int i = 0; i < porTraducir.size(); i++) {
-            if (arbolIngles.buscar(porTraducir.get(i)) != null) {
-                Lenguaje = 1;
+            for (int i = 0; i < Datos.size(); i++) {
+                String[] palabras = Datos.get(i).split(" ");
+                for (int j = 0; j < palabras.length; j++) {
+                    palabras[j] = palabras[j].toLowerCase();
+                    porTraducir.add(palabras[j]);
+                }
             }
-            if (arbolFrances.buscar(porTraducir.get(i)) != null) {
-                Lenguaje = 2;
+    
+    
+            for (int i = 0; i < porTraducir.size(); i++) {
+                if (arbolIngles.buscar(porTraducir.get(i)) != null) {
+                    Lenguaje = 1;
+                    break;
+                }
+                else if (arbolFrances.buscar(porTraducir.get(i)) != null) {
+                    Lenguaje = 2;
+                    break;
+                }
+                else{
+                    Lenguaje = 3;
+                }
+            }
+    
+            if (Lenguaje == 1) {
+                for (int i = 0; i < porTraducir.size(); i++) {
+                    resultado = resultado + " " + arbolIngles.Traducir(porTraducir.get(i)) + " ";
+                }
+                
+            }
+            else if(Lenguaje == 2){
+                for (int i = 0; i < porTraducir.size(); i++) {
+                    resultado = resultado + " " + arbolFrances.Traducir(porTraducir.get(i)) + " ";
+                }
+                
             }
             else{
-                Lenguaje = 3;
+                resultado = "No se encuentra la palabra en ninguno de los diccionarios";
             }
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            resultado = "No se encontro el archivo";
         }
 
-        if (Lenguaje == 1) {
-            for (int i = 0; i < porTraducir.size(); i++) {
-                resultado = resultado + " " + arbolIngles.Traducir(porTraducir.get(i)) + " ";
-            }
-            
-        }
-        else if(Lenguaje == 2){
-            for (int i = 0; i < porTraducir.size(); i++) {
-                resultado = resultado + " " + arbolFrances.Traducir(porTraducir.get(i)) + " ";
-            }
-            
-        }
-        else{
-            resultado = "No se encuentra la palabra en ninguno de los diccionarios";
-        }
+        
         
         return resultado;
     }
