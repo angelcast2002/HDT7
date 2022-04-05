@@ -9,6 +9,7 @@ Para modificar una palabra mal ingresada se debe borrar primero de ambos idiomas
 Las mayusculas no son tomadas en cuenta.<br>
 Las palabras en ingles y frances son las keys en sus diccionarios respectivos.<br>
 Ingresar palabras iguales como keys, provocara compartamientos inesperados.<br>
+Tener cuidado de donde se agregan los txt que se traducen, no es necesario agregar el ".txt" cuando el programa lo solicita. <br>
 <br>
 <br>
 
