@@ -127,7 +127,8 @@ public class Arbol {
             Mensaje = "El nodo " + id + " ha sido eliminado";
         }
         return Mensaje;
-    }
+        // obtenido de https://www.youtube.com/watch?v=22AE6WklXBg con algunas modificaciones
+    } 
     
 
     public void inOrder(Nodo N){
@@ -136,6 +137,7 @@ public class Arbol {
             System.out.println("(" + N.id + "," + N.contenido + ")");
             inOrder(N.derecha);
         }
+        // hecho con la ayuda de githubcopilot
     }
 
     public String buscar(String id) {
@@ -154,6 +156,7 @@ public class Arbol {
             Mensaje = id;
         }
         return Mensaje;
+        // hecho con la ayuda de githubcopilot
     }
 
     public String Traducir(String id){
@@ -172,6 +175,7 @@ public class Arbol {
             Mensaje = aux.contenido;
         }
         return Mensaje;
+        // hecho con la ayuda de githubcopilot
     }
 
     private class Nodo{

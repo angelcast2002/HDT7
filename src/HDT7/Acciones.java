@@ -115,7 +115,7 @@ public class Acciones {
         }
 
         try {
-            Datos.add("The woman asked me to do my homework about my town");
+            // Datos.add("The woman asked me to do my homework about my town");
 
             for (int i = 0; i < Datos.size(); i++) {
                 String[] palabras = Datos.get(i).split(" ");
