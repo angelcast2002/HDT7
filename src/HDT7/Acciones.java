@@ -54,26 +54,26 @@ public class Acciones {
         //se crean los arboles
         
         ArrayList <String> Ingles = new ArrayList<>();
-        ArrayList <String> Español = new ArrayList<>();
+        ArrayList <String> Espanol = new ArrayList<>();
         ArrayList <String> Frances = new ArrayList<>();
 
         for (int i = 0; i < datos.size(); i++) {
 
             Ingles.add(datos.get(i));
             i = i + 1;
-            Español.add(datos.get(i));
+            Espanol.add(datos.get(i));
             i = i + 1;
             Frances.add(datos.get(i));
 
         }
         
         for (int i = 0; i < Ingles.size(); i++) {
-            arbolIngles.insertar(Ingles.get(i), Español.get(i));
+            arbolIngles.insertar(Ingles.get(i), Espanol.get(i));
             
         }
 
         for (int i = 0; i < Frances.size(); i++) {
-            arbolFrances.insertar(Frances.get(i), Español.get(i));
+            arbolFrances.insertar(Frances.get(i), Espanol.get(i));
             
         }
 
