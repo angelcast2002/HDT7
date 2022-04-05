@@ -34,14 +34,15 @@ public class LeerDatos {
         }
 
         b.close();
+        file.close();
         return Datos;
     } 
 
     public static ArrayList LeerDatos2(String NombreArchivo)throws IOException, FileNotFoundException{
         ArrayList <String> Datos = new ArrayList<>();
-        // NombreArchivo = NombreArchivo + ".txt";
+        NombreArchivo = NombreArchivo + ".txt";
         String cadena;
-        FileReader file = new FileReader("intento.txt");
+        FileReader file = new FileReader(NombreArchivo);
         BufferedReader b = new BufferedReader(file);
 
         while ((cadena = b.readLine()) != null) {
@@ -50,6 +51,7 @@ public class LeerDatos {
         }
 
         b.close();
+        file.close();
         return Datos;
     }  
     
