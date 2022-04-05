@@ -11,6 +11,11 @@ import java.util.Scanner;
  * @author Angel
  */
 public class Menu {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Acciones ac = new Acciones();
         ac.Separar();
@@ -26,12 +31,15 @@ public class Menu {
             System.out.println("Ingrese una opcion");
             System.out.println("1. Agregar un nodo");
             System.out.println("2. Eliminar un nodo de un solo diccionario");
-            //System.out.println("3. Eliminar un nodo de todos los diccionarios");
+            //--* System.out.println("3. Eliminar un nodo de todos los diccionarios");
             System.out.println("3. Cargar un txt para traducirlo");
-            System.out.println("4. Salir");
+            System.out.println("4. Imprimir InOrden los diccionarios");
+            System.out.println("5. Salir");
+            //Se imprimen las opciones del menu
             opcion = sc.nextInt();
             sc.nextLine();
 
+            //Se ejecutan las opciones del menu
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese la palabra en ingles");
@@ -53,6 +61,25 @@ public class Menu {
                     System.out.println(ac.Traducir(nombre));
                     break;
                 case 4:
+                    //pedir el diccionario a imprimir
+                    //siendo 1 para ingles y 2 para frances
+                    System.out.println("Ingrese el diccionario a imprimir, 1 para ingles y 2 para frances");
+                    int diccionario = sc.nextInt();
+                    sc.nextLine();
+
+                    if (diccionario == 1) {
+                        System.out.println("----Diccionario Ingles: ");
+                        ac.arbolIngles.inOrder(ac.arbolIngles.raiz);
+                    } if (diccionario == 2) {
+                        System.out.println("----Diccionario Frances: ");
+                        ac.arbolFrances.inOrder(ac.arbolFrances.raiz);
+                    }
+                    else {
+                        System.out.println("Opcion invalida");
+                    }
+
+                    break;
+                case 5:
                     System.out.println("Saliendo...");
                     salir = true;
                     break;
@@ -62,8 +89,8 @@ public class Menu {
             }
             
         }
-        
-        //pedir un dato tipo string y guardarlo en una variable llamada id
+
+        //--* Codigo generado con ayuda de githubcopilot
         
        
     }

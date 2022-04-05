@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author Angel
  */
 public class Acciones {
+    //Logica del programa
 
     LeerDatos leer = new LeerDatos();
     ArrayList <String> datos = new ArrayList<>();
@@ -20,7 +21,11 @@ public class Acciones {
     Arbol arbolIngles = new Arbol();
     Arbol arbolFrances = new Arbol();
 
+    /**
+     *
+     */
     public void Separar() {
+        //se llama a leer y se separa por medio de ,
         ArrayList <String> Datos = new ArrayList<>();
         try {
             Datos = leer.LeerDatos();
@@ -42,7 +47,11 @@ public class Acciones {
 
     }
 
+    /**
+     *
+     */
     public void CrearArboles() {
+        //se crean los arboles
         
         ArrayList <String> Ingles = new ArrayList<>();
         ArrayList <String> Español = new ArrayList<>();
@@ -76,7 +85,13 @@ public class Acciones {
 
     }
     
+    /**
+     *
+     * @param id String del nodo a eliminar
+     * @return String con el diccionario en InOrder
+     */
     public String eliminar(String id){
+        //Elimina un nodo del arbol
         String resultado = " ";
         resultado = "En el diccionario de ingles: "  + arbolIngles.eliminar(id);
         resultado = resultado + "\n" +"En el diccionario de frances: " +arbolFrances.eliminar(id);
@@ -90,8 +105,15 @@ public class Acciones {
 
     }
     
-
+    /**
+     *
+     * @param id String del nodo a insertar
+     * @param espanol String con la traduccion del nodo
+     * @param frances String con la traduccion del nodo
+     * @return String con el resultado de la insercion
+     */
     public String Insertar(String id, String espanol, String frances) {
+        //Se llama a insertar en los arboles y se imprime el resultado
         String resultado = "";
         arbolIngles.insertar(id, espanol);
         arbolFrances.insertar(frances, espanol);
@@ -99,7 +121,13 @@ public class Acciones {
         return resultado;
     }
 
+    /**
+     *
+     * @param nombreArchivo String con el nombre del archivo
+     * @return String con el resultado de la traduccion
+     */
     public String Traducir(String nombreArchivo) {
+        //se llama a leer y se separa por medio de un espacio
         ArrayList <String> porTraducir = new ArrayList<>();
         String resultado = "";
         ArrayList <String> Datos = new ArrayList<>();
@@ -125,7 +153,7 @@ public class Acciones {
                 }
             }
     
-    
+            //Si se encuentran alguna de las palabras en alguno de los diccionarios se hace un break y se trabaja con ese diccionario de lo contrario se devuelve un mensaje de error
             for (int i = 0; i < porTraducir.size(); i++) {
                 if (arbolIngles.buscar(porTraducir.get(i)) != null) {
                     Lenguaje = 1;
@@ -139,7 +167,8 @@ public class Acciones {
                     Lenguaje = 3;
                 }
             }
-    
+            
+            //Dependiendo del lenguaje se traduce palabra a palabra y se concatena en un string
             if (Lenguaje == 1) {
                 for (int i = 0; i < porTraducir.size(); i++) {
                     resultado = resultado + " " + arbolIngles.Traducir(porTraducir.get(i)) + " ";

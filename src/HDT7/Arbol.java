@@ -11,10 +11,19 @@ package HDT7;
 public class Arbol {
 
     Nodo raiz;
+
+    /**
+     *
+     */
     public Arbol() {
         raiz = null;
     }
 
+    /**
+     *
+     * @param id
+     * @param contenido
+     */
     public void insertar(String id, String contenido) {
         Nodo n = new Nodo(id, contenido);
         
@@ -48,6 +57,12 @@ public class Arbol {
     }
 
     //Metodo para eliminar un nodo del Arbol
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String eliminar(String id) {
         String Mensaje = "";
         Nodo aux = raiz;
@@ -130,7 +145,10 @@ public class Arbol {
         // obtenido de https://www.youtube.com/watch?v=22AE6WklXBg con algunas modificaciones
     } 
     
-
+    /**
+     *
+     * @param N
+     */
     public void inOrder(Nodo N){
         if(N != null){
             inOrder(N.izquierda);
@@ -140,7 +158,13 @@ public class Arbol {
         // hecho con la ayuda de githubcopilot
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String buscar(String id) {
+        //se busca el nodo con el id que se le pasa y se retorna su contenido si existe de lo contraio se retorna un valor null
         String Mensaje = "";
         Nodo aux = raiz;
         while (aux != null && !aux.id.equals(id)) {
@@ -159,7 +183,14 @@ public class Arbol {
         // hecho con la ayuda de githubcopilot
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String Traducir(String id){
+        //se busca el nodo con el id que se le pasa y regresa el contenido del mismo, la traduccion
+        //de lo contrario se retorna el valor original del id encerrado entre asteriscos
         String Mensaje = "";
         Nodo aux = raiz;
         while (aux != null && !aux.id.equals(id)) {
@@ -178,14 +209,44 @@ public class Arbol {
         // hecho con la ayuda de githubcopilot
     }
 
-    private class Nodo{
+    /**
+     *
+     */
+    public class Nodo{
+        //clase nodo que contiene los atributos de un nodo del arbol
+
+        /**
+         *
+         */
         public Nodo padre;
+
+        /**
+         *
+         */
         public Nodo derecha;
+
+        /**
+         *
+         */
         public Nodo izquierda;
+
+        /**
+         *
+         */
         public String id;
+
+        /**
+         *
+         */
         public String contenido;
 
+        /**
+         *
+         * @param llave
+         * @param contenido
+         */
         public Nodo(String llave, String contenido) {
+            //constructor de la clase nodo
             this.id = llave;
             this.contenido = contenido;
             this.padre = null;

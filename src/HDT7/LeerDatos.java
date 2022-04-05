@@ -18,10 +18,11 @@ public class LeerDatos {
 
     /**
      *
-     * @return
+     * @return ArrayList con los datos
      * @throws IOException
      * @throws FileNotFoundException
      */
+     //se leen los datos iniciales del programa
     public static ArrayList LeerDatos()throws IOException, FileNotFoundException{
         ArrayList <String> Datos = new ArrayList<>();
         String cadena;
@@ -37,7 +38,15 @@ public class LeerDatos {
         file.close();
         return Datos;
     } 
+    //Se leen los datos de los archivos de texto a traducir
 
+    /**
+     *
+     * @param NombreArchivo nombre del archivo
+     * @return ArrayList con los datos
+     * @throws IOException
+     * @throws FileNotFoundException
+     */
     public static ArrayList LeerDatos2(String NombreArchivo)throws IOException, FileNotFoundException{
         ArrayList <String> Datos = new ArrayList<>();
         NombreArchivo = NombreArchivo + ".txt";
